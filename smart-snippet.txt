@@ -1,0 +1,51 @@
+<!-- MTPBS Video Fancy Box -->
+{% comment %}
+<!-- SmartSnippets Variables
+title=TextField
+
+image=TextField
+filer:/media/snippet-widgets/css/filer-field.css, filer:/media/snippet-widgets/js/filer-field.js, snippet-widgets/fileroptionalimage.html
+
+video_url=TextField
+
+Dropdown:
+Name: Container
+Choices: None,Start,End,Both
+
+-->
+{% endcomment %}
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />     
+
+{% load sekizai_tags %}
+{% load filertags %}
+
+{% if Container == "Start" or Container == "Both"  %}
+<div class="text-plugin clearfix box">{% endif %}
+    
+    <div class="span6">
+        <a href="{{video_url}}" class="promo-link fancybox-media"><img src="{{image}}" alt="{{title}}"  width="300" height="127"/></a>
+        <p><strong><a href="{{video_url}}" class="fancybox-media">{{ title }}</a></strong></p>
+    </div>
+    
+    {% if Container == "End" or Container == "Both"  %}
+</div>
+{% endif %}
+
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+
+<script type="text/javascript">
+    $('.fancybox-media').fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+        padding: 0, 
+        helpers : {
+            media : {}
+        }
+    });
+</script>
+
+{% endaddtoblock %} 
